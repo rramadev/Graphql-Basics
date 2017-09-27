@@ -2,13 +2,37 @@ const fetch = require('node-fetch');
 const {
   GraphQLSchema,
   GraphQLObjectType,
-  GraphQLString
+  GraphQLString,
+  GraphQLList
 } = require ('graphql');
+
+const RepoType = new GraphQLObjectType({
+  name: 'Repository',
+  description: 'repository type',
+  fields: () => ({
+    name: { 
+      type: GraphQLString, 
+      resolve: repo => repo.name
+    },
+    description: { 
+      type: GraphQLString, 
+      resolve: repo => repo.description
+    },
+    git_url: { 
+      type: GraphQLString, 
+      resolve: repo => repo.git_url
+    }
+  })
+});
 
 const UserType = new GraphQLObjectType({
   name: 'User',
   description: 'user type',
   fields: () => ({
+    login: { 
+      type: GraphQLString, 
+      resolve: user => user.login
+    },
     id: { 
       type: GraphQLString, 
       resolve: user => user.id
@@ -24,6 +48,13 @@ const UserType = new GraphQLObjectType({
     location: { 
       type: GraphQLString, 
       resolve: user => user.location
+    },
+    repos: { 
+      type: new GraphQLList(RepoType), 
+      resolve: user => fetch(
+        `https://api.github.com/users/${user.login}/repos`
+      )
+      .then(res => res.json())
     }
   })
 })
