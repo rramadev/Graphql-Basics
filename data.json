@@ -1,28 +1,14 @@
 {
   "users": [
     {
-      "id": 1
+      "login": "testUser",
+      "name": "Fifoofoo Smith",
+      "id": 9
     },
     {
-      "id": 2
-    },
-    {
-      "id": 3
-    },
-    {
-      "id": 4
-    },
-    {
-      "id": 5
-    },
-    {
-      "id": 6
-    },
-    {
-      "id": 7
-    },
-    {
-      "id": 8
+      "login": "testUser2",
+      "name": "Fifoofoo Smith2",
+      "id": 10
     }
   ]
 }

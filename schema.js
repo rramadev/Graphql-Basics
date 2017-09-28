@@ -1,8 +1,10 @@
 const fetch = require('node-fetch');
+const axios = require('axios');
 const {
   GraphQLSchema,
   GraphQLObjectType,
   GraphQLString,
+  GraphQLInt,
   GraphQLList
 } = require ('graphql');
 
@@ -36,7 +38,7 @@ const UserType = new GraphQLObjectType({
       resolve: user => user.login
     },
     id: { 
-      type: GraphQLString, 
+      type: GraphQLInt, 
       resolve: user => user.id
     },
     name: { 
@@ -97,17 +99,24 @@ const mutation = new GraphQLObjectType({
         login: { type: GraphQLString },
         name: { type: GraphQLString }
       },
-      resolve: (root, args) => fetch(
+      resolve: (root, args) => axios.post(
         'http://localhost:3000/users', 
-        { 
-          method: 'POST', 
-          body: JSON.stringify({ 
-            login: 'aaa', 
-            name: 'bbb' 
-          }) 
+        {           
+          login: args.login, 
+          name: args.name 
         }
-      )
-      .then(res => res.json())
+      )         
+      .then(res => res.data)
+    },
+    deleteUser: {
+      type: UserType,
+      args: {
+        id: { type: GraphQLInt }
+      },
+      resolve: (root, args) => axios.delete(
+        `http://localhost:3000/users/${args.id}`
+      )         
+      .then(res => res.data)
     }    
   })
 });

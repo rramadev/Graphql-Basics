@@ -11,8 +11,9 @@ A GraphQL project demo, to test and understand the fundamentals concepts of this
 
 - GraphQL
 - Express
-- node-fetch
-- json-server
+- Node-fetch
+- Json-server
+- Axios
 - Npm scripts
 - Github API
 
