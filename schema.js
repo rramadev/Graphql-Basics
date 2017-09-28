@@ -29,10 +29,6 @@ const UserType = new GraphQLObjectType({
   name: 'User',
   description: 'user type',
   fields: () => ({
-    login: { 
-      type: GraphQLString, 
-      resolve: user => user.login
-    },
     id: { 
       type: GraphQLString, 
       resolve: user => user.id
@@ -67,10 +63,10 @@ module.exports = new GraphQLSchema({
       user: {
         type: UserType,
         args: {
-          name: { type: GraphQLString }
+          login: { type: GraphQLString }
         },
         resolve: (root, args) => fetch(
-          `https://api.github.com/users/${args.name}`
+          `https://api.github.com/users/${args.login}`
         )
         .then(res => res.json())
       }      
