@@ -5,20 +5,22 @@
 A GraphQL project demo, to test and understand the fundamentals concepts of this query language for APIs and related technologies, including: 
 
 - GraphQL node packages
-- Github API
 - GraphiQL Tool
 
 ## Built With
 
 - GraphQL
 - Express
+- node-fetch
+- json-server
 - Npm scripts
+- Github API
 
 ## Commands
 
 command | description
 --- | ---
-`npm run serve`| run server.js using node
+`npm run server`| run server.js using node
 
 ## Installation
 

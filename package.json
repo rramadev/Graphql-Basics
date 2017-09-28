@@ -1,17 +1,19 @@
 {
  "name": "graphql-basics",
  "version": "1.0.0",
- "description": "Basics of Graphql",
+ "description": "Basics of GraphQL",
  "author": "Raul Rama",
  "license": "MIT",
  "main": "server.js",
  "scripts": {
-  "serve": "node server.js"
+  "server": "nodemon server.js",
+  "json-server": "json-server --watch data.json"
  },
  "dependencies": {
   "express": "4.15.5",
   "express-graphql": "0.6.11",
   "graphql": "0.11.4",
+  "json-server": "0.12.0",
   "node-fetch": "1.7.3"
  },
  "devDependencies": {}
